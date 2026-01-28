@@ -21,21 +21,28 @@ function verTipoMaterial(mat){
         return 'material inválido'
     }
 }
+    let resposta = document.getElementById(`resposta`)
+    let calcular = document.getElementById(`calcular`)
 
-function principal(){
-    let material = 'cobre'  // cobre, aluminio 
-    let resistencia = 0.0
-    let comprimento = 1000
-    let area = 6.0
+    calcular.addEventListener(`click`, ()=>{
+        let material = document.getElementById(`material`).value  // cobre, aluminio 
+        let resistencia = 0.0
+        let comprimento = Number(document.getElementById(`comprimento`).value)
+        let area = Number(document.getElementById(`area`).value)
+    
+        
+        let mat = verTipoMaterial(material)
+    
+        resistencia = calcularResistencia(comprimento, area, mat)
+    
+        resposta.innerHTML = ''
+        resposta.innerHTML += `${mat}`
+        resposta.innerHTML = `Resultado da resistência do condutor: ${resistencia.toFixed(3)} Ω`
+        resposta.style.fontSize = '2rem'
+        resposta.style.fontWeight = 'bold'
+        resposta.style.fontFamily = 'Verdana'
+        resposta.innerHTML += '<br>'
+    
+    }) 
 
-    let mensagem = ''
-
-    let mat = verTipoMaterial(material)
-    console.log(mat)
-
-    resistencia = calcularResistencia(comprimento, area, mat)
-    console.log(resistencia)
-}
-
-
-principal()
+    // a função principal foi substituida por uma arrow function  ()=>
